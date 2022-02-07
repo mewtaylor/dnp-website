@@ -1,8 +1,9 @@
 language: node_js
-
+os:
+  - linux
+dist: xenial
 node_js:
-  - "stable"
-  - "lts/*"
+  - "12.22"
 
 branches:
   only:
@@ -20,6 +21,5 @@ deploy:
   provider: script
   script: yarn install && yarn run deploy
   skip_cleanup: true
-  keep_history: true
   on:
     branch: master

@@ -20,7 +20,6 @@ exports[`LabelMenus renders correctly 1`] = `
           className="menuTitle"
         >
           <span
-            className="menuTitle"
             onClick={[Function]}
           >
             OVERVIEW
@@ -36,10 +35,9 @@ exports[`LabelMenus renders correctly 1`] = `
           className="menuTitle"
         >
           <span
-            className="menuTitle"
             onClick={[Function]}
           >
-            USE CASES/ALERTS
+            OBJECTIVES/ALERTS
           </span>
         </span>
       </div>
@@ -52,7 +50,6 @@ exports[`LabelMenus renders correctly 1`] = `
           className="menuTitle"
         >
           <span
-            className="menuTitle"
             onClick={[Function]}
           >
             DATASET INFO

@@ -4,13 +4,33 @@
   clear: both;
 }
 
-.dropdownContent {
-  width: 100%;
-  text-align: right;
-  z-index: 1;
+.navbar {
+  margin-right: 2.1875rem;
+}
+.listSet {
+  text-decoration: none;
+  list-style-type: none;
+  clear: both;
+  color: black;
 }
 
-.navbar {
-  width: 100%;
-  margin-top: 1rem;
+.listSetBold {
+  font-weight: bold;
+  color: black;
+}
+.listSet:hover div {
+  font-weight: bold;
+  color: black;
+}
+
+.listSet:hover {
+  text-decoration: none;
+}
+
+.selectorArrow {
+  margin-right: 0.4375rem;
+}
+
+.dropdownContent {
+  margin-bottom: 0;
 }

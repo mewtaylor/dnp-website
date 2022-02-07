@@ -16,53 +16,61 @@
   display: flex;
   margin-top: 6rem;
   flex-direction: column;
-  padding-right: 3rem;
-  padding-left: 0;
+  width: 20%;
 }
 
 .sectionBase {
   overflow: hidden;
+  max-width: 75%;
   border-top: 1rem solid #000;
   border-right: solid 0.2rem #000;
   border-left: solid 0.2rem #000;
   border-bottom: solid 0.2rem #000;
   background-color: #fff;
   margin-top: 2.1875rem;
+  margin-left: 20%;
   padding: 2.6875rem;
 }
 
 .labelHeader {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   border-bottom: solid 1rem black;
   margin-bottom: 2rem;
+  padding-bottom: 1rem;
 }
 
-.labelHeader h1,
+.labelHeader h2,
 .labelHeader h4 {
-    margin-bottom: 0;
+  margin-bottom: 0;
+  line-height: 1;
 }
 
-.blockDiv {
-  display: block;
+.labelTitle {
+  flex-grow: 2;
 }
 
-.hiddenDiv {
-  display: none;
+.logoImg {
+  width: 4rem;
+  margin: 0 .5rem;
 }
 
 @media (max-width: landscapeMaxWidth) {
-    .labelWrapper {
-        padding: 1rem 0;
-    }
+  .labelWrapper {
+    padding: 1rem 0;
+  }
 
-    .sectionBase {
-        margin-top: .5rem;
-    }
+  .sectionBase {
+    margin-top: 0.5rem;
+    max-width: 100%;
+    margin-left: 0;
+  }
 
-    .flexTitleMenus {
-        position: relative;
-        margin-top: 0;
-        padding-right: 0;
-    }
+  .flexTitleMenus {
+    position: relative;
+    margin-top: 0;
+    padding-right: 0;
+    width: 100%;
+  }
 }

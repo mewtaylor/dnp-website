@@ -1,127 +1,86 @@
 import React, { Component } from "react"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
 import styles from "./styles.module.css"
+import classNames from "classnames"
 
 class Selector extends Component {
   constructor(props) {
     super(props)
-    const preds = []
-    const useCases = this.props.useCases
 
     this.state = {
-      filteredPreds: [],
-      preds,
-      currentUseCase: "",
-      addedPreds: [],
-    }
-    this.onChange = this.onChange.bind(this)
-  }
-
-  onChange(e) {
-    e.stopPropagation()
-    console.log("e", e.target.value)
-
-    if (!e.target.value || e.target.value === " " || e.target.value === "") {
-      this.setState({ filteredPreds: [...this.state.preds] })
-    } else {
-      let filteredPreds = []
-      filteredPreds = this.props.useCases[e.target.value].predictions
-      this.setState({ filteredPreds, currentUseCase: e.target.value })
+      objs: [],
+      addedObjs: [],
     }
   }
 
   render() {
     return (
-      <div className={styles.selectorBody}>
-        <h1 className={styles.selectHeader}>Selector</h1>
-        <div className={styles.flexContainer}>
-          <div className={styles.childOne}>
-            <h1 className={styles.boldHeader}>Use Case:</h1>
-            <p className={styles.datasetParagraph}>
-              How is the dataset being applied?
+      <>
+        <Row>
+          <Col md={2}></Col>
+          <Col md={10}>
+            <h1 className={styles.useCasesHeader}>Objectives & Alerts</h1>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={2}>
+            <h1 className={styles.aboutHeader}>About</h1>
+          </Col>
+          <Col md={10}>
+            <p>
+              Relevant alerts for data practitioners who intend to use this
+              dataset for specific use cases (types of analyses).
             </p>
-            <span className={styles.datasetUnderlineBold}></span>
-            <div onChange={this.onChange} className={styles.useCaseList}>
-              <label for="bending-curve">
-                <input
-                  className={styles.please}
-                  type="radio"
-                  value="bending-curve"
-                  checked={this.state.currentUseCase == "bending-curve"}
-                />
-                {this.props.useCases["bending-curve"].description}
-              </label>
+          </Col>
+        </Row>
 
-              <label>
-                <input
-                  type="radio"
-                  value="point-prevalence"
-                  checked={this.state.currentUseCase == "point-prevalence"}
-                />
-                {this.props.useCases["point-prevalence"].description}
-              </label>
-
-              <label>
-                <input
-                  type="radio"
-                  value="back-to-normal"
-                  checked={this.state.currentUseCase == "back-to-normal"}
-                />
-                {this.props.useCases["back-to-normal"].description}
-              </label>
-
-              <label>
-                <input
-                  type="radio"
-                  value="outbreak-clusters"
-                  checked={this.state.currentUseCase == "outbreak-clusters"}
-                />
-                {this.props.useCases["outbreak-clusters"].description}
-              </label>
-
-              <label>
-                <input
-                  type="radio"
-                  value="exceed-hospital-capacity"
-                  checked={this.state.currentUseCase == "exceed-hospital-capacity"}
-                />
-                {this.props.useCases["exceed-hospital-capacity"].description}
-              </label>
-
-              <label>
-                <input
-                  type="radio"
-                  value="population-based-impact"
-                  checked={this.state.currentUseCase == "population-based-impact"}
-                />
-                {this.props.useCases["population-based-impact"].description}
-              </label>
+        <Row>
+          <Col md={2}>
+            <h1 className={styles.selectHeader}>Selector</h1>
+            <p className={styles.selectParagraph}>
+              Click on a modeling objective to filter relevant alerts.
+            </p>
+          </Col>
+          <Col md={10}>
+            <div className={styles.selectorBody}>
+              <div className={styles.onlyChild}>
+                <h1 className={styles.boldHeader}>Modeling Objectives:</h1>
+                <p className={styles.datasetParagraph}>
+                  What is the objective?
+                </p>
+                <span className={styles.objectivesUnderlineBold}></span>
+                <div
+                  onChange={this.props.handleObjectiveChange}
+                  className={styles.ulPredictions}
+                >
+                  {Object.entries(this.props.objectives).map(
+                    ([key, value], j) => {
+                      return (
+                        <label
+                          htmlFor={key}
+                          key={j}
+                          className={classNames(styles.please, {
+                            [styles.pleaseBold]:
+                              this.props.currentObjective === key,
+                          })}
+                        >
+                          <input
+                            type="radio"
+                            value={key}
+                            checked={this.props.currentObjective === key}
+                          />
+                          {value.description}
+                        </label>
+                      )
+                    }
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-          <div className={styles.childTwo}>
-            <h1 className={styles.boldHeader}>Predictions:</h1>
-            <p className={styles.datasetParagraph}>What is being predicted?</p>
-            <span className={styles.predictionsUnderlineBold}></span>
-            <div
-              onChange={this.props.handleChange}
-              className={styles.ulPredictions}
-            >
-              {this.state.filteredPreds.map((f, j) => {
-                const status = f
-                return (
-                  <label htmlFor={f} key={j}>
-                    <input
-                      type="radio"
-                      value={f}
-                      checked={this.props.currentPrediction === f}
-                    />
-                    {this.props.predictions[f].description}
-                  </label>
-                )
-              })}
-            </div>
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </>
     )
   }
 }
