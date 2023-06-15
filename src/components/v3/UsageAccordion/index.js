@@ -34,19 +34,21 @@ const UsageAccordion = props => {
                     />
                     <h3>{props.header}</h3>
                 </div>
-                <span
-                    className={styles.accordionCaret}
-                    onClick={toggleReadMore}
-                    onKeyPress={toggleReadMore}
-                    role="button"
-                    tabIndex={0}
-                >
-                    {isReadMore ? (
-                        <CaretDownIcon />
-                    ) : (
-                        <CaretUpIcon />
-                    )}
-                </span>
+                {sampleText.length > 0 && 
+                    <span
+                        className={styles.accordionCaret}
+                        onClick={toggleReadMore}
+                        onKeyPress={toggleReadMore}
+                        role="button"
+                        tabIndex={0}
+                    >
+                        {isReadMore ? (
+                            <CaretDownIcon />
+                        ) : (
+                            <CaretUpIcon />
+                        )}
+                    </span>
+                }
             </div>
             {sampleText.length > 0 ? (
                 <>
@@ -82,7 +84,7 @@ const UsageAccordion = props => {
                 </>
             ) : (
                 <p className={styles.readMoreSection}>
-                    {sampleText}
+                    {'None Specified'}
                 </p>
             )}
         </div> 
